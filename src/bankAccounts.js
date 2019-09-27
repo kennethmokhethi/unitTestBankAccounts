@@ -1,3 +1,5 @@
+let bank = require("./bank");
+
 class bankAccounts {
   constructor(balance, interest, monthlyFee) {
     this.balance = balance;
@@ -7,8 +9,9 @@ class bankAccounts {
 
   //   Upadate the balnce after an interest has been earned and monthfee deducted
   finishMonth() {
-    this.balance =
-      this.balance + this.balance * (this.interest / 12) - this.monthlyFee;
+    let bal = (this.balance * (this.interest / 100)) / 12;
+
+    this.balance = this.balance + bal - this.monthlyFee;
   }
 
   //   update the balnce when money deposited
@@ -21,3 +24,7 @@ class bankAccounts {
     this.balance -= moneyOut;
   }
 }
+
+// let bannkAc1 = new bankAccounts(1000, 12, 50);
+// bannkAc1.finishMonth();
+// console.log(bannkAc1.balance);
