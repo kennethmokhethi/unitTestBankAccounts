@@ -1,6 +1,7 @@
-let bank = require("./bank");
+// let Bank = require("./bank");
 
-class bankAccounts {
+let bank = class BankAccounts {
+  // constructor of the class
   constructor(balance, interest, monthlyFee) {
     this.balance = balance;
     this.interest = interest;
@@ -11,7 +12,8 @@ class bankAccounts {
   finishMonth() {
     let bal = (this.balance * (this.interest / 100)) / 12;
 
-    this.balance = this.balance + bal - this.monthlyFee;
+    this.balance = Number((this.balance + bal - this.monthlyFee).toFixed(2));
+    //this.balance.toFixed(1);
   }
 
   //   update the balnce when money deposited
@@ -22,9 +24,8 @@ class bankAccounts {
   //   update balance when money withdrawn
   withdraw(moneyOut) {
     this.balance -= moneyOut;
+    console.log("hey");
   }
-}
+};
 
-// let bannkAc1 = new bankAccounts(1000, 12, 50);
-// bannkAc1.finishMonth();
-// console.log(bannkAc1.balance);
+module.exports = bank;

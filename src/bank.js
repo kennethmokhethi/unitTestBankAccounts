@@ -1,14 +1,16 @@
-let bankAccount = require("./bankAccounts");
+let BankAccounts = require("./bankAccounts");
 
 class Bank {
-  constructor(bankAccountNumber) {
+ 
+  constructor(balance, interest, mon, bankAccountNumber) {
+    this.bankAcc = new BankAccounts(balance, interest, mon);
     this.bankAccountNumber = bankAccountNumber;
   }
 
   withdraw(bankAccountNumber, amount) {
-    this.withdraw(bankAccountNumber, amount);
-    this.bankAccountNumber.withdraw(amount);
-  }
+    
+    this.withdraw(amount);
+    
 
   deposit(bankAccountNumber, amount) {
     this.bankAccountNumber.deposit(amount);
@@ -20,6 +22,11 @@ class Bank {
   }
 }
 
-let bannkAc1 = new bankAccounts(1000, 12, 50);
-let bank1 = Bank(bannkAc1);
-console.log(bank1);
+
+let bank = new Bank(1000, 20, 30, 1245558545);
+
+
+bank.bankAcc.finishMonth();
+
+console.log(bank);
+
