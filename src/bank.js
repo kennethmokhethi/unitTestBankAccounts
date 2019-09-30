@@ -1,32 +1,32 @@
 let BankAccounts = require("./bankAccounts");
 
 class Bank {
- 
   constructor(balance, interest, mon, bankAccountNumber) {
     this.bankAcc = new BankAccounts(balance, interest, mon);
-    this.bankAccountNumber = bankAccountNumber;
   }
 
   withdraw(bankAccountNumber, amount) {
-    
-    this.withdraw(amount);
-    
+    bankAccountNumber.bankAcc.withdraw(amount);
+  }
 
   deposit(bankAccountNumber, amount) {
-    this.bankAccountNumber.deposit(amount);
+    bankAccountNumber.bankAcc.deposit(amount);
   }
 
   transfer(fromBankAcountNumber, toBankAccountNumber, amount) {
-    toBankAccountNumber.deposit(amount);
-    fromBankAcountNumber.withdraw(amount);
+    fromBankAcountNumber.bankAcc.withdraw(amount);
+    toBankAccountNumber.bankAcc.deposit(amount);
   }
 }
 
+let bank2 = new Bank(2000, 12, 45);
+let bank2 = new Bank(1000, 12, 45);
+let bank3 = new Bank(100, 12, 45);
 
-let bank = new Bank(1000, 20, 30, 1245558545);
-
-
-bank.bankAcc.finishMonth();
-
-console.log(bank);
-
+console.log("after invoking the deposit method");
+bank1.transfer(bank1, bank2, 10);
+// bank1.deposit(bank1, 150);
+// console.log("Bank1 below");
+console.log(bank1);
+// console.log("Bank3 below");
+console.log(bank2);

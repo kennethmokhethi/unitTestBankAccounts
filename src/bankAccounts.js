@@ -24,7 +24,6 @@ let bank = class BankAccounts {
   //   update balance when money withdrawn
   withdraw(moneyOut) {
     this.balance -= moneyOut;
-    console.log("hey");
   }
 };
 
