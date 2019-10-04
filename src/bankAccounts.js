@@ -1,6 +1,4 @@
-// let Bank = require("./bank");
-
-let bank = class BankAccounts {
+class BankAccounts {
   // constructor of the class
   constructor(balance, interest, monthlyFee) {
     this.balance = balance;
@@ -25,6 +23,4 @@ let bank = class BankAccounts {
   withdraw(moneyOut) {
     this.balance -= moneyOut;
   }
-};
-
-module.exports = bank;
+}
