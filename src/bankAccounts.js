@@ -1,4 +1,4 @@
-class BankAccounts {
+module.exports = class BankAccounts {
   // constructor of the class
   constructor(balance, interest, monthlyFee) {
     this.balance = balance;
@@ -11,7 +11,6 @@ class BankAccounts {
     let bal = (this.balance * (this.interest / 100)) / 12;
 
     this.balance = Number((this.balance + bal - this.monthlyFee).toFixed(2));
-    //this.balance.toFixed(1);
   }
 
   //   update the balnce when money deposited
@@ -23,4 +22,6 @@ class BankAccounts {
   withdraw(moneyOut) {
     this.balance -= moneyOut;
   }
-}
+};
+
+// module.exports = BankAccounts;
