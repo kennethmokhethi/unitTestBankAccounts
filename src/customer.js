@@ -1,5 +1,3 @@
-let Bank = require('./Bank');
-
 class Customer{
     constructor(balance, interests, monthlyfee, bankAcc, password){
         this.Bank = new Bank(balance, interests, monthlyfee, bankAcc);
@@ -19,7 +17,8 @@ class Customer{
     }
 
     deposit(bankAccountNumber, amount){
-        bankAccountNumber.Bank.deposit(bankAccountNumber, amount);
+        this.Bank.deposit(bankAccountNumber, amount);
+       
     }
 
     transfer(fromBankAcountNumber, toBankAccountNumber, amount, secretPassword){
@@ -32,4 +31,3 @@ class Customer{
     }
 }
 
-let customer = new Customer(1000, 12, 50, 12345678, 1234)
