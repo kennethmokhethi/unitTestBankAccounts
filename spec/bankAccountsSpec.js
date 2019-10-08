@@ -60,5 +60,41 @@ describe("Evaluating the bankAccount class", () => {
       });
     });
   
-   
   });
+
+  describe("Testing the customer class",()=>{
+    
+    describe("Testing the setpassword method",()=>{
+      it("Should return the new password",()=>{
+        let customer = new Customer(1500,12,25,11145,"what");
+        customer.setPassword("hello");
+        expect(customer.password).toBe("hello")
+      })
+    })
+
+
+    describe("Testing the withdraw method",()=>{
+      let customer2 = new Customer(1500,12,25,11145,"Ghad");
+      it("It should return the updated balance after withdrawal:balance=1500-500=1000",()=>{
+        customer2.withdraw(11145,500,"Ghad");
+        expect(customer2.Bank.bankAcc.balance).toBe(1000)
+      })
+
+      it("return wrong password if the password is incorrectly inputed",()=>{
+        try {
+          customer2.withdraw(11145,500,"hel");
+        } catch (e) {
+          expect(e).toBeTruthy("wrong password");
+        }
+
+      })
+    })
+
+    describe("Testing the deposit function",()=>{
+      it("It should return the updated balance after deposited which is balance=1700+500=2200 ",()=>{
+        let customer3 = new Customer(1700,12,25,154745,"yalo");
+        customer3.deposit(154745,500);
+        expect(customer3.Bank.bankAcc.balance).toBe(2200);
+      })
+    }) 
+  })
