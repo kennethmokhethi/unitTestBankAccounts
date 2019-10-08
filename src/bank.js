@@ -1,55 +1,62 @@
-let BankAccounts = require("./bankAccounts");
+let BankAccounts = require('./BankAccounts');
 
-class Bank {
-  constructor(balance, interest, mon, bankAccountNumber) {
-    this.bankAcc = new BankAccounts(balance, interest, mon);
-    this.bankAccountNumber = bankAccountNumber;
-    // this.Password;
-    this.bAccounts = [];
-    this.bAccounts.push({
+let Bank = class Bank  {
+ 
+  constructor(balance, interest, mon, bankAccountNumber) { 
+     this.bankAcc = new BankAccounts(balance, interest, mon);
+     this.bankAccountNumber = bankAccountNumber;
+     this.Accounts = [];
+    this.Accounts.push({
       bankAccountNumber: this.bankAccountNumber,
       bankAcc: this.bankAcc
     });
   }
 
-  ///Method that creates the bank accounts
-  createAccounts(balance, interest, mon, bankAccountNumber) {
-    this.bankAcc = new BankAccounts(balance, interest, mon);
+  createAccounts(balance, interestRate, monthlyFee, bankAccountNumber) {
+    this.bankAcc = new BankAccounts(balance, interestRate, monthlyFee);
     this.bankAccountNumber = bankAccountNumber;
-    // this.Password;
-
-    this.bAccounts.push([
-      { bankAccountNumber: this.bankAccountNumber, bankAcc: this.bankAcc }
-    ]);
+    this.Accounts.push({
+      bankAccountNumber: this.bankAccountNumber,
+      bankAcc: this.bankAcc
+    });
   }
-  withdraw(bankAccountNumber, amount) {
-    for (let a = 0; a < this.bAccounts.length; a++) {
-      if (bankAccountNumber == this.bAccounts[a].bankAccountNumber) {
-        this.bAccounts[a].bankAcc.withdraw(amount);
+
+  withdraw(bankAccountNum, amount) {
+    for (let i = 0; i < this.Accounts.length; i++) {
+      if (bankAccountNum == this.Accounts[i].bankAccountNumber) {
+        this.Accounts[i].bankAcc.withdraw(amount);
+      } else {
+        throw new Error("incorrect AccountNumber!!1");
       }
     }
   }
+    
 
   deposit(bankAccountNumber, amount) {
-    for (let a = 0; a < this.bAccounts.length; a++) {
-      if (bankAccountNumber == this.bAccounts[a].bankAccountNumber) {
-        this.bAccounts[a].bankAcc.deposit(amount);
+    for (let i = 0; i < this.Accounts.length; i++) {
+      if (bankAccountNumber == this.Accounts[i].bankAccountNumber) {
+        this.Accounts[i].bankAcc.deposit(amount);
+      } else {
+        throw new Error("incorrect AccountNumber!!2");
       }
     }
   }
 
+  
   transfer(fromBankAcountNumber, toBankAccountNumber, amount) {
-    this.withdraw(fromBankAcountNumber, amount);
-    this.deposit(toBankAccountNumber, amount);
+     
+         this.withdraw(fromBankAcountNumber, amount);
+        this.deposit(toBankAccountNumber, amount)
   }
 }
 
-let ken = new Bank(1000, 12, 2, 124);
-ken.createAccounts(150, 2, 1, 552);
-ken.createAccounts(110, 2, 1, 512);
 
-// ken.withdraw(124, 10);
 
-console.log(ken.bAccounts[0].bankAcc.balance);
-console.log(ken.bAccounts[1].bankAcc.balance);
-console.log(ken.bAccounts);
+
+const bank = new Bank(1000, 12, 50, 12345);
+bank.createAccounts(150, 12, 40, 22345);
+bank.createAccounts(110, 15, 30, 3345);
+ bank.transfer(3345, 22345, 100) 
+
+
+module.exports = Bank;
