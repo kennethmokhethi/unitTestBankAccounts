@@ -1,6 +1,4 @@
-let BankAccounts = require('./BankAccounts');
-
-let Bank = class Bank  {
+class Bank  {
  
   constructor(balance, interest, mon, bankAccountNumber) { 
      this.bankAcc = new BankAccounts(balance, interest, mon);
@@ -50,13 +48,3 @@ let Bank = class Bank  {
   }
 }
 
-
-
-
-const bank = new Bank(1000, 12, 50, 12345);
-bank.createAccounts(150, 12, 40, 22345);
-bank.createAccounts(110, 15, 30, 3345);
- bank.transfer(3345, 22345, 100) 
-
-
-module.exports = Bank;
